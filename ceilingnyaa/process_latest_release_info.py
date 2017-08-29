@@ -8,7 +8,7 @@ def download_and_or_notify(latest_release_info):
     items_acted_on = {}
 
     automatically_download_on_new_release = get_config_key("AutomaticallyDownloadOnNewRelease", default = True, isBoolean = True)
-    notify_on_new_release = get_config_key("NotifyOnNewRelease", default = True, isBoolean = True)
+    notify_on_new_release = get_config_key("NotifyOnNewRelease", default = False, isBoolean = True)
 
     for row in latest_release_info:
         if row["filename"] != row["last_known_filename"]:

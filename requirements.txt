@@ -1,0 +1,6 @@
+beautifulsoup4
+bitmath
+colorama
+lxml
+pushbullet.py
+termcolor

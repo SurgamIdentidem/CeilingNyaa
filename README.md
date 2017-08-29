@@ -76,4 +76,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 * [nyaa.si](https://nyaa.si/) for carrying on the torch of nyaa.se.
 * [Crunchyroll](http://www.crunchyroll.com/) for making me start following seasonal Japanese cartoons instead of just marathoning and for encouraging me to give them money by having their region blocking lax enough that a simple Chrome extension can bypass said blocking.
+* [Pushbullet](http://www.pushbullet.com/) for having a free (within limits) API that makes it very easy to send myself mobile notifications.
 * [PyTsada](https://www.facebook.com/groups/itgpytsada/). Just by being in it, it pressures me to relearn Python every once in awhile.

@@ -74,5 +74,5 @@ def update_last_known_filenames(shows = { "title_here": "latest_filename_here" }
     return True
 
 def open_csv_file(mode = "rb"):
-    watchlist_file_path = get_config_key("WatchListPath", default = "watchlist.csv")
-    return open(get_path("../" + watchlist_file_path), mode)
+    watchlist_file_path = get_config_key("WatchListPath", default = "../watchlist.csv")
+    return open(get_path(watchlist_file_path), mode)

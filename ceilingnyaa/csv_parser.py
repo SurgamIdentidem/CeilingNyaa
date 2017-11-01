@@ -62,7 +62,11 @@ def update_last_known_filenames(shows = { "title_here": "latest_filename_here" }
 
             elif len(row) >= 2:
                 if row[0] in shows:
-                    row[2] = shows[row[0]]
+                    latest_filename = shows[row[0]]
+                    try:
+                        row[2] = latest_filename
+                    except IndexError:
+                        row.append(latest_filename)
 
             first_row = False
             rows_to_write.append(row)

@@ -1,7 +1,6 @@
 import os
 from datetime import datetime
 
-# from config_parser import get_config_key # TODO Doesn't work, no idea why
 import config_parser
 from utils import get_path
 
@@ -34,6 +33,7 @@ def log_info(message, forceNoFileLog = False):
 
 def log_message(message, level = 3, forceNoFileLog = False): #level 1 = error, 2 = success, 3 = info
     original_message = message
+    message = unicode(message).encode('utf8')
     log_type = "[INFO]   "
     if level == 1:
         log_type = "[ERROR]  "

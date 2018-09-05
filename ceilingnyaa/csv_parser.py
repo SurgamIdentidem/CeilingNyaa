@@ -1,4 +1,4 @@
-import csv, re
+import unicodecsv as csv, re
 from urllib import urlencode
 
 from config_parser import get_config_key

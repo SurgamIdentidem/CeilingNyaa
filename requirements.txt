@@ -4,3 +4,4 @@ colorama
 lxml
 pushbullet.py
 termcolor
+unicodecsv

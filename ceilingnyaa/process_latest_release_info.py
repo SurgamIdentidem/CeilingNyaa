@@ -35,7 +35,7 @@ def create_pushbullet_notification(title, filename):
         note = "A new file is available for " + title + ": " + filename
 
         log_info("Sending Pushbullet notification...")
-        push = pb.push_note("CeilingNyaa", note)
+        pb.push_note("CeilingNyaa", note)
 
         log_success("Pushbullet notification sent for " + title + ": " + filename)
 

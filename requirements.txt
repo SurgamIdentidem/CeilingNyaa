@@ -1,6 +1,7 @@
 beautifulsoup4
 bitmath
 colorama
+configparser
 lxml
 pushbullet.py
 termcolor

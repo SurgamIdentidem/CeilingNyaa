@@ -14,14 +14,14 @@ try:
 
         try:
             watchlist = get_watchlist()
-        except IOError, e:
+        except IOError as e:
             raise IOError(log_error("Error getting watchlist info: " + str(e)))
 
         try:
             update_last_known_filenames(download_and_or_notify(get_latest_release_info(watchlist)))
-        except KeyboardInterrupt, e:
+        except KeyboardInterrupt as e:
             raise e
-        except IOError, e:
+        except IOError as e:
             raise IOError(log_error("Error saving watchlist info: " + str(e)))
 
         log_info("Main loop done")

@@ -1,21 +1,24 @@
 import bitmath, sys
 from bs4 import BeautifulSoup
-from urllib2 import Request, HTTPError, URLError, urlopen
+from urllib import request
+from urllib.request import urlopen
+from urllib.error import HTTPError, URLError
 
 from log import log_error, log_info, log_success
 
 HTML_PARSER = "lxml"
-REQUEST_OPTIONS = { "User-Agent" : "Mozilla/5.0" }
 
 def get_latest_release_info(watchlist):
     latest_release_info = []
 
     for watchlist_item in watchlist:
         try:
-            request = Request(watchlist_item.get("full_url"), None, REQUEST_OPTIONS)
-            log_info("Checking: " + request.get_full_url())
+            req = request.Request(watchlist_item.get("full_url"))
+            req.add_header("User-Agent", "Mozilla/5.0")
 
-            page = BeautifulSoup(urlopen(request), HTML_PARSER)
+            log_info("Checking: " + req.get_full_url())
+
+            page = BeautifulSoup(urlopen(req), HTML_PARSER)
 
             try:
                 row = page.find("table", class_="torrent-list").find("tbody").find("tr")
@@ -23,7 +26,7 @@ def get_latest_release_info(watchlist):
                 row = None
 
             if row is None:
-                log_error("No results found for " + request.get_full_url())
+                log_error("No results found for " + req.get_full_url())
 
             else:
                 cells = row.select("td")
@@ -37,11 +40,11 @@ def get_latest_release_info(watchlist):
                         "filesize_in_bytes": get_filesize_in_bytes_from_cell(cells[3])
                     })
 
-        except KeyboardInterrupt, e:
+        except KeyboardInterrupt as e:
             raise e
-        except HTTPError, e:
+        except HTTPError as e:
             log_error('Error retrieving data: ' + str(e))
-        except URLError, e:
+        except URLError as e:
             log_error('Error retrieving data: ' + str(e))
         except:
             log_error('Error retrieving data:' + str(sys.exc_info()[0]))

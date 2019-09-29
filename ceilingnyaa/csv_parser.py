@@ -1,5 +1,5 @@
 import unicodecsv as csv, re
-from urllib import urlencode
+from urllib.parse import urlencode
 
 from config_parser import get_config_key
 from log import log_error, log_info, log_success
@@ -49,7 +49,6 @@ def update_last_known_filenames(shows = { "title_here": "latest_filename_here" }
     if len(shows) <= 0:
         return False
 
-    watchlist = []
     rows_to_write = []
 
     with open_csv_file("rb") as csvfile:

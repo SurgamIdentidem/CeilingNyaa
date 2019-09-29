@@ -33,7 +33,7 @@ def log_info(message, forceNoFileLog = False):
 
 def log_message(message, level = 3, forceNoFileLog = False): #level 1 = error, 2 = success, 3 = info
     original_message = message
-    message = unicode(message).encode('utf8')
+    message = str(message)
     log_type = "[INFO]   "
     if level == 1:
         log_type = "[ERROR]  "
@@ -83,9 +83,9 @@ def create_log_directory_if_needed():
             return True
 
         except:
-			log_error('Error creating logs directory.', forceNoFileLog = True)
-
-			return False
+            log_error('Error creating logs directory.', forceNoFileLog = True)
+            
+            return False
 
     else:
         return True

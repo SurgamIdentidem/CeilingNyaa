@@ -1,5 +1,5 @@
 from ast import literal_eval
-import ConfigParser
+import configparser
 
 from log import log_error, log_info, log_success
 from utils import get_path
@@ -46,7 +46,7 @@ def get_config_key(key, default = None, section = None, isBoolean = False):
     return default
 
 def read_ini():
-    Config = ConfigParser.ConfigParser()
+    Config = configparser.ConfigParser()
     Config.read(get_path("../" + INI_FILENAME))
 
     return Config

@@ -4,7 +4,7 @@ from urllib import request
 from urllib.request import urlopen
 from urllib.error import HTTPError, URLError
 
-from log import log_error, log_info, log_success
+from log import log_error, log_info
 
 HTML_PARSER = "lxml"
 
@@ -26,7 +26,7 @@ def get_latest_release_info(watchlist):
                 row = None
 
             if row is None:
-                log_error("No results found for " + req.get_full_url())
+                log_info("No results found for " + req.get_full_url())
 
             else:
                 cells = row.select("td")

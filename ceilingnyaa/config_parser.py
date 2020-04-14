@@ -1,7 +1,7 @@
 from ast import literal_eval
 import configparser
 
-from log import log_error, log_info, log_success
+from log import log_error
 from utils import get_path
 
 INI_FILENAME = "config.ini"

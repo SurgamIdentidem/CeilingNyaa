@@ -2,7 +2,6 @@ import unicodecsv as csv, re
 from urllib.parse import urlencode
 
 from config_parser import get_config_key
-from log import log_error, log_info, log_success
 from utils import get_path
 
 BASE_URL = "https://nyaa.si"

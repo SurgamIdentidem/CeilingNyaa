@@ -58,7 +58,7 @@ def log_message(message, level = 3, forceNoFileLog = False): #level 1 = error, 2
             print(message)
 
     if level <= file_log_level and not forceNoFileLog:
-        if create_log_directory_if_needed():
+        if create_log_folder_if_needed():
             file_name = '../' + LOG_FOLDER_NAME + '/' + get_current_date() + '.txt'
             file_path = get_path(file_name)
 
@@ -73,7 +73,7 @@ def log_message(message, level = 3, forceNoFileLog = False): #level 1 = error, 2
     return original_message
 
 
-def create_log_directory_if_needed():
+def create_log_folder_if_needed():
     path = get_path('../' + LOG_FOLDER_NAME)
 
     if not os.path.exists(path) or not os.path.isdir(path):
@@ -83,7 +83,7 @@ def create_log_directory_if_needed():
             return True
 
         except:
-            log_error('Error creating logs directory.', forceNoFileLog = True)
+            log_error('Error creating logs folder.', forceNoFileLog = True)
             
             return False
 

@@ -12,36 +12,38 @@ def get_watchlist():
 
     with open_csv_file("rb") as csvfile:
         reader = csv.reader(csvfile)
-        first_row = True
 
         for row in reader:
-            if first_row and len(row) > 0 and row[0] == "#TITLE":
-                pass
+            # Must have title and search terms:
+            if len(row) < 2: 
+                continue
+            if not row[0] or not row[1]:
+                continue
+            # We can have lines in the CSV just for comments:
+            if row[0].startswith('#'):
+                continue
+            
+            watchlist_item = {
+                "title": row[0],
+                "search": row[1],
+                "last_known_filename": row[2].strip() if len(row) > 2 and row[2] else None,
+                "categories": row[3] if len(row) > 3 and row[3] else "0_0",
+                "filters": row[4] if len(row) > 4 and row[4] else "0",
+            }
 
-            elif len(row) >= 2:
-                watchlist_item = {
-                    "title": row[0],
-                    "search": row[1],
-                    "last_known_filename": row[2].strip() if len(row) > 2 and row[2] else None,
-                    "categories": row[3] if len(row) > 3 and row[3] else "0_0",
-                    "filters": row[4] if len(row) > 4 and row[4] else "0",
-                }
+            full_url = re.sub(r'[\/\\\?]*$', "", BASE_URL) #removing trailing \, /, and ? just in case
 
-                full_url = re.sub(r'[\/\\\?]*$', "", BASE_URL) #removing trailing \, /, and ? just in case
+            full_url = full_url + "/?" + urlencode({
+                "f": watchlist_item.get("filters"),
+                "c": watchlist_item.get("categories"),
+                "q": watchlist_item.get("search"),
+                "s": "id",
+                "o": "desc",
+            })
 
-                full_url = full_url + "/?" + urlencode({
-                    "f": watchlist_item.get("filters"),
-                    "c": watchlist_item.get("categories"),
-                    "q": watchlist_item.get("search"),
-                    "s": "id",
-                    "o": "desc",
-                })
+            watchlist_item["full_url"] = full_url
 
-                watchlist_item["full_url"] = full_url
-
-                watchlist.append(watchlist_item)
-
-            first_row = False
+            watchlist.append(watchlist_item)
 
     return watchlist
 
